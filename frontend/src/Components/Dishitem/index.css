@@ -1,0 +1,32 @@
+.dishimg{
+    height:300px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.dishitem{
+    height:100%;
+    width: 31%;
+    font-family: "Sans-serif";
+    margin:01%;
+    border-radius: 20px;
+    list-style-type: none;
+    color: inherit;
+    box-shadow:5px;
+    text-decoration: none;
+    background-color: transparent;
+}
+.dishitem h1{
+    font-size: 25px;
+    text-align: center; 
+    color:rgb(190, 190, 198);
+}
+.dishitem:hover{
+    background-color:#4c4a47;
+    cursor: pointer;
+    color:antiquewhite;
+    border:1px solid 	#6a6765; 
+    transition: 0.4s;
+    letter-spacing: 0.05rem;
+    box-shadow: 0 0 40px 	#5b5a59;
+}

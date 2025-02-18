@@ -1,0 +1,114 @@
+/* Common styles for all carousel items */
+.carousel-item {
+    width: 99%;
+    height: 650px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2vw;
+    border-radius: 20px;
+    border: 0px;
+    position: relative;
+    
+    overflow: hidden;
+}
+
+/* Dark overlay for better text visibility */
+.carousel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Darker overlay */
+    border-radius: 20px;
+}
+
+/* Individual item backgrounds */
+.Item1 {
+    background-image: url("https://img.freepik.com/free-photo/gourmet-chicken-biryani-with-steamed-basmati-rice-generated-by-ai_188544-13480.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1714435200&semt=sph");
+}
+
+.Item2 {
+    background-image: url("https://media.istockphoto.com/id/1400083547/pl/zdj%C4%99cie/sma%C5%BCone-samosy-z-nadzieniem-warzywnym-popularne-indyjskie-przek%C4%85ski-na-drewnianej-desce.jpg?s=612x612&w=0&k=20&c=m7y1iA7aV3qKeC90GN_-zW2evQBS9-HJz7LOgXcjSfU=");
+}
+
+.Item3 {
+    background-image: url("https://www.shutterstock.com/image-photo/tasty-butter-chicken-curry-dish-600nw-1153329448.jpg");
+}
+
+/* Ensure images fit properly */
+.carousal_image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Text Styling */
+h1 {
+    font-size: 3vw; /* Responsive font size */
+    color: rgb(218, 209, 209);
+    margin: 0;
+    z-index: 2;
+    position: relative;
+}
+
+p {
+    font-size: 1.5vw; /* Responsive font size */
+    color: rgb(218, 209, 209);
+    margin: 10px 0;
+    z-index: 2;
+    position: relative;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .carousel-item {
+        height: 500px;
+    }
+    
+    h1 {
+        font-size: 4vw;
+    }
+
+    p {
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-item {
+        width: 95%;
+        height: 400px;
+        padding: 3vw;
+    }
+
+    h1 {
+        font-size: 5vw;
+    }
+
+    p {
+        font-size: 2.5vw;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item {
+        height: 350px;
+        width: 95%;
+        padding: 4vw;
+    }
+
+    h1 {
+        font-size: 6vw;
+    }
+
+    p {
+        font-size: 3vw;
+    }
+}

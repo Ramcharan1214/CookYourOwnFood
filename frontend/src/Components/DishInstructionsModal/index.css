@@ -1,0 +1,61 @@
+/* Make modal content centered and responsive */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Make it take full height of viewport */
+    max-width: 90%;
+    margin: auto;
+}
+
+.modal-content {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Modal title styling */
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Body text */
+.modal-text {
+    font-size: 1rem;
+    color: #333;
+    white-space: pre-line; /* Preserve new lines */
+    line-height: 1.5;
+}
+
+/* Footer buttons */
+.modal-footer {
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 768px) {
+    .modal-dialog {
+        max-width: 95%;
+        height: auto; /* Ensure it adjusts properly on mobile */
+    }
+
+    .modal-title {
+        font-size: 1.3rem;
+    }
+
+    .modal-text {
+        font-size: 0.9rem;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+
+    .modal-footer button {
+        width: 100%;
+        margin-top: 5px;
+    }
+}

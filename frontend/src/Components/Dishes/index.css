@@ -1,0 +1,212 @@
+/* Container for all dishes */
+.dishes_Con {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: center; /* Center items *//* Spacing between items */
+    /* Center the container */
+}
+.button{ 
+    padding: "10px";
+    background-color: #333;
+    color: "#fff";
+    border: "none";
+    cursor: "pointer";
+    height:57px;
+    color: white;
+    width:90px;
+    border: 1px solid #424141;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+ }
+ 
+.button:hover {
+    border-color: #292828; /* Darker focus border */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.button::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+
+/* Dish Page Background */
+.dish {
+    background-color: rgb(12, 12, 12);
+    width: 100%;
+    min-height: 100vh; 
+    position: relative;
+    
+}
+
+/* Dishes Page Styling */
+.dishes_page {
+    font-family: "Sans-serif";
+    text-align: center;
+    color: white;
+}
+.dish_heading{
+    margin-top: 14px;
+    font-size: 40px;
+}
+/* Dish Input */
+.dish-input {
+    width: 100%;
+    max-width: 40%;
+    height: 57px; /* Increased for better visibility */
+    padding: 10px 16px;
+    font-size: 16px;
+    border: 1px solid #424141;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    outline: none;
+    margin-top :3px;
+    transition: all 0.3s ease-in-out;
+    background-color: #333; /* Add background for contrast */
+    color: white; /* Text color */
+}
+
+.dish-input:hover {
+    border-color: #292828; /* Darker focus border */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.dish-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Dish Image */
+.dish_image {
+    height: 250px;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px !important;
+}
+
+/* Dish Card container */
+.dish-card {
+    width: 30%; 
+    height:400px; 
+    background-size: cover;
+    background-color: transparent;
+    background-position: center;
+    border: 0;
+    position: relative;
+    list-style-type: none; 
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.dish-card:hover {
+    transform: scale(1.05);
+}
+
+/* Overlay effect for card */
+.overlay {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+/* Responsive Grid Layout */
+@media only screen and (max-width: 599px) {
+    .dishes_Con {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dish-input {
+        font-size: 13px;
+        padding: 8px;
+    }
+}
+
+/* Small Devices (Tablets) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+    .dishes_page {
+        padding: 2%;
+    }
+    
+    .dishes_Con {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+        gap: 15px;
+    }
+}
+
+/* Medium Devices (Laptops) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .dishes_page {
+        padding: 2%;
+    }
+
+    .dish-input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .dishes_Con {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+        gap: 20px;
+    }
+}
+
+/* Large Screens (Desktops) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .dishes_page {
+        padding: 3%;
+    }
+
+    .dish-input {
+        font-size: 18px;
+        padding: 12px;
+    }
+
+    .dish-card {
+        width: 45%; /* 2 cards per row */
+        margin: 15px;
+    }
+
+    .dishes_Con {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns for larger screens */
+    }
+}
+
+/* Extra Large Screens */
+@media only screen and (min-width: 1200px) {
+    .dishes_page {
+        padding: 4%;
+    }
+
+    .dish-input {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .dishes_Con {
+        grid-template-columns: repeat(5, 1fr); /* 5 columns for extra large screens */
+    }
+
+    .dish-card {
+        width: 23%; /* 4 cards per row */
+        margin: 15px;
+    }
+}
