@@ -12,10 +12,10 @@ app.use(cors());
 const db = mysql.createPool({
   connectionLimit: 10,
   port: 3306,
-  host: "localhost",
-  user: "root",
-  password: "9890",
-  database: "cookyourownfood",
+  host: "Hostname",
+  user: "Username",
+  password: "DatabasePassword",
+  database: "databaseName",
 });
 
 // Handle database errors
