@@ -1,0 +1,69 @@
+from flask import Flask, request, jsonify
+from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder, SystemMessagePromptTemplate, HumanMessagePromptTemplate
+from langchain_core.runnables.history import RunnableWithMessageHistory
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.schema.output_parser import StrOutputParser
+from flask_cors import CORS  # Allow React to communicate with Flask
+
+# Initialize Flask app
+app = Flask(__name__)
+CORS(app)  # Enable CORS for frontend communication
+
+# Replace this with your actual Google API Key
+GOOGLE_API_KEY = "Enter your Google Api Key"
+
+# Set up the AI Cooking Assistant prompt
+prompt = ChatPromptTemplate(
+    messages=[
+        SystemMessagePromptTemplate.from_template(
+           "You are ChefAI, a highly skilled and friendly AI Cooking Assistant. Your goal is to assist users with cooking-related queries, including recipe suggestions, ingredient substitutions, step-by-step cooking instructions, meal planning, and general cooking advice. You strictly respond only to cooking-related questions and ignore unrelated topics.When providing cooking instructions, ensure they are formatted as a numbered step-by-step guide for clarity. Each step should be concise, easy to follow, and sequentially ordered to guide the user through the cooking process smoothly."
+        ),
+        MessagesPlaceholder(variable_name="chat_history"),
+        HumanMessagePromptTemplate.from_template("{question}"),
+    ]
+)
+
+# Initialize AI Model
+model = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GOOGLE_API_KEY)
+
+# Combine model, prompt, and output parser
+chain = prompt | model | StrOutputParser()
+
+# Store conversation history and recent dish queries
+chat_history = {}  # Stores user interactions per session
+recent_dishes = {}  # Stores last 5 searches per user
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    data = request.json
+    session_id = data.get("session_id", "default")  # Unique ID for each user
+    user_input = data.get("message", "").strip().lower()  # Normalize user input
+
+    if session_id not in chat_history:
+        chat_history[session_id] = []
+        recent_dishes[session_id] = []  # Initialize user's recent dish list
+
+    # Check if the same dish was asked before within the last 5 searches
+    for dish in recent_dishes[session_id]:
+        if dish["name"] == user_input:
+            return jsonify({"response": dish["response"]})
+
+    # Store user input in chat history
+    chat_history[session_id].append({"role": "user", "content": user_input})
+
+    # Generate AI response
+    config = {"configurable": {"session_id": session_id}}
+    response = chain.invoke({"question": user_input, "chat_history": chat_history[session_id]}, config)
+
+    # Save AI response in history
+    chat_history[session_id].append({"role": "assistant", "content": response})
+
+    # Store recent dish query (limit to last 5)
+    recent_dishes[session_id].append({"name": user_input, "response": response})
+    if len(recent_dishes[session_id]) > 5:
+        recent_dishes[session_id].pop(0)  # Remove the oldest search
+
+    return jsonify({"response": response})
+
+if __name__ == '__main__':
+    app.run(debug=True)
